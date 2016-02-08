@@ -1,0 +1,19 @@
+<h3>Your Chat Session</h3>
+
+<ul>
+  <% @chat.messages.each do |message| %>
+  <li>
+    <strong><%= message.body %></strong>
+    <span>by: <%= message.user.username %>, <%= time_ago_in_words(message.created_at) %> ago</span>
+  </li>
+  <% end %>
+</ul>
+
+<br>
+<br>
+
+<form class="" action=<%= chat_messages_url(@chat) %> method="post">
+  <%= auth_token %>
+  <input type="textarea" name="body" value="" placeholder="">
+  <input type="submit" name="name" value="Send">
+</form>

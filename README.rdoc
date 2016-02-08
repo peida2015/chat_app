@@ -12,6 +12,19 @@ Things you may want to cover:
 * Configuration
 
 * Database creation
+  ##chats
+  - [ ] chat_session_id: integer, foreign key
+
+  ##chat_sessions
+  - [ ] chat_id: integer: foreign key
+  - [ ] user_id: integer: foreign key
+
+  ##users
+  - [ ] username: string, unique, not null
+  - [ ] password_digest: string, not null
+  - [ ] session_token: string, unique, not null
+
+
 
 * Database initialization
 

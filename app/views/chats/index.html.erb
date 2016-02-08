@@ -1,0 +1,10 @@
+<h3>All your chat sessions</h3>
+
+<ol>
+  <% @chats.each do |chat| %>
+  <li>
+    <%= chat.users.first.username %>
+    <%= link_to chat.users.include?(current_user) ? 'Enter Session':'Join Chat', chat_url(chat.id) %>
+  </li>
+  <% end %>
+</ol>

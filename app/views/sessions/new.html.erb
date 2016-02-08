@@ -1,0 +1,8 @@
+<h3>Please Sign In</h3>
+
+<form class="sign" action=<%= sessions_url %> method="post">
+  <%= auth_token %>
+  <input type="text" name="username" value="" placeholder="username">
+  <input type="password" name="password" value="" placeholder="password">
+  <input type="submit" name="Login" value="Login">
+</form>
