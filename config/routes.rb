@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :sessions, only:[:new, :create, :destroy]
   resources :static_pages, only:[:root]
   resources :chats, only:[:index, :create, :show] do
-    resources :messages, only: [:create]
+    resources :messages, only: [:index, :create]
   end
 
   root to: 'users#new'

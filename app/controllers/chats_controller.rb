@@ -1,6 +1,7 @@
 class ChatsController < ApplicationController
+  # include ActionController::Live
   def index
-    @chats = Chat.all
+    @chats = Chat.all.includes(:users)
     # @chats = current_user.chats
     render :index
   end
@@ -14,12 +15,12 @@ class ChatsController < ApplicationController
   end
 
   def show
-    @chat = Chat.find(params[:id])
+    @chat = Chat.includes(messages:[:user]).find(params[:id])
     # debugger
     @chat_session = current_user.chat_sessions.new(chat_id: params[:id])
     @chat_session.save
-    # @chat.chat_session.create(user_id: current_user.id)
     render :show
+
   end
 
   private

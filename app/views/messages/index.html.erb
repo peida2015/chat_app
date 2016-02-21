@@ -1,7 +1,7 @@
 <h3>Your Chat Session</h3>
 
 <ul>
-  <% @chat.messages.includes(:user).each do |message| %>
+  <% @chat.messages.each do |message| %>
   <li>
     <strong><%= message.body %></strong>
     <span>by: <%= message.user.username %>, <%= time_ago_in_words(message.created_at) %> ago</span>
@@ -9,17 +9,11 @@
   <% end %>
 </ul>
 
-<br>
-<br>
 <script type="text/javascript">
-  var source = new EventSource("<%= chat_messages_url(@chat) %>");
-  source.onmessage = function (event) {
+  var source = new EventSource(<%= chat_messages_url %>);
+  source.addEventListener('firstMess', function (event) {
     console.log(event.data);
-    message = $.parseJSON(event.data)
-    $('ul').append('<li><strong>'+message.body+'</strong><span> by: '+message.username+', '+message.created+' ago</span></li>')
-    // debugger
-  };
-  // $(window).unload(source.close)
+  });
 </script>
 
 <form class="" action=<%= chat_messages_url(@chat) %> method="post">
